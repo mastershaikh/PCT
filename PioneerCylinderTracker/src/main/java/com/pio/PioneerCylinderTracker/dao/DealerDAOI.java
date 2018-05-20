@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.TreeMap;
 
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -19,8 +20,15 @@ import com.pio.PioneerCylinderTracker.model.DealerDetailsBean;
 @Repository
 public class DealerDAOI implements DealerDAO {
 
+	private SessionFactory sessionFactory;
+	
 	@Autowired
-	SessionFactory sessionFactory;
+	public DealerDAOI(EntityManagerFactory factory) {
+		if(factory.unwrap(SessionFactory.class) == null){
+		      throw new NullPointerException("factory is not a hibernate factory");
+		    }
+		this.sessionFactory = factory.unwrap(SessionFactory.class);
+	}
 	
 	@Override
 	@Transactional

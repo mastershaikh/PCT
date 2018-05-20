@@ -2,6 +2,7 @@ package com.pio.PioneerCylinderTracker.dao;
 
 import java.util.Optional;
 
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -17,8 +18,15 @@ import com.pio.PioneerCylinderTracker.model.CylinderBean;
 @Repository
 public class CylinderRegisterDAOImpl implements CylinderRegisterDAO {
 
-	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Autowired
+	public CylinderRegisterDAOImpl(EntityManagerFactory factory) {
+		if(factory.unwrap(SessionFactory.class) == null){
+		      throw new NullPointerException("factory is not a hibernate factory");
+		    }
+		    this.sessionFactory = factory.unwrap(SessionFactory.class);
+	}
 	
 	@Override
 	@Transactional
