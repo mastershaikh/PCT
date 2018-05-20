@@ -69,6 +69,14 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+	<dependency>
+	<groupId>com.pio</groupId>
+	<artifactId>PioneerCylinderTracker</artifactId>
+	<version>1.0</version>
+	<scope>system</scope>
+	<systemPath>E:/app/nizam/virtual/product/12.2.0/dbhome_1/jdbc/lib/ojdbc8.jar</systemPath>
+</dependency>
 	</dependencies>
 
 	<build>

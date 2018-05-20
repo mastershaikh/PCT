@@ -8,6 +8,7 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,11 +17,8 @@ import com.pio.PioneerCylinderTracker.model.CylinderBean;
 @Repository
 public class CylinderRegisterDAOImpl implements CylinderRegisterDAO {
 
+	@Autowired
 	private SessionFactory sessionFactory;
-	
-	public CylinderRegisterDAOImpl(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 	
 	@Override
 	@Transactional

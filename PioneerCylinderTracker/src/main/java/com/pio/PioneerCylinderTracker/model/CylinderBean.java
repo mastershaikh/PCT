@@ -45,7 +45,7 @@ public class CylinderBean {
 	private String damage;
 	
 	@NonNull
-	private Timestamp lmd;		
+	private Timestamp lastModifiedDate;		
 	
 	@Column(name = "REMARK")
 	private String remark;	

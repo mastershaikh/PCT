@@ -35,7 +35,7 @@ public class CylinderUtility implements CylinderUtil{
 	@Override
 	public String register(CylinderBean cylinder) {
 		Timestamp time = Timestamp.valueOf(LocalDateTime.now());
-		cylinder.setLmd(time);		
+		cylinder.setLastModifiedDate(time);		
 		cylinder.setUsageStatus("0");
 		return cylinderDAO.cylinderRegister(cylinder);
 	}
