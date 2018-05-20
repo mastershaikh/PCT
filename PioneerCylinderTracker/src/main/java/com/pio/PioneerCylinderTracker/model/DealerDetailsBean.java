@@ -46,7 +46,7 @@ public class DealerDetailsBean {
 	private Timestamp dateOfRegistration;
 	
 	@NonNull
-	private long totalCylindersTaken;
+	private Integer totalCylindersTaken;
 	
 	
 }

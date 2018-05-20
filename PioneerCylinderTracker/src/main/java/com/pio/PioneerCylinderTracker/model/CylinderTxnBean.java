@@ -38,7 +38,7 @@ public class CylinderTxnBean {
 
 	@NonNull
 	@Column(length = 1)
-	private String liveTx;
+	private String live;
 	
 	@NonNull
 	private Timestamp dOTx;
