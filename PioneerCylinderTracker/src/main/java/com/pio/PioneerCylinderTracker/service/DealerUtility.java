@@ -3,6 +3,7 @@ package com.pio.PioneerCylinderTracker.service;
 import java.util.Optional;
 import java.util.TreeMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pio.PioneerCylinderTracker.dao.DealerDAO;
@@ -10,13 +11,14 @@ import com.pio.PioneerCylinderTracker.dao.DealerDAO;
 @Service
 public class DealerUtility implements DealerUtil {
 	
-	DealerDAO dealerDAO;
+	private DealerDAO dealerDAO;
 	
 	
 	/**
 	 * @param dealerDAO
 	 * @param dealerL
 	 */
+	@Autowired
 	public DealerUtility(DealerDAO dealerDAO) {
 		super();
 		this.dealerDAO = dealerDAO;

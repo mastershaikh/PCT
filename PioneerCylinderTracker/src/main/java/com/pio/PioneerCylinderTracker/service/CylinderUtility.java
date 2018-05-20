@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pio.PioneerCylinderTracker.dao.CylinderDetailsTab;
@@ -27,6 +28,7 @@ public class CylinderUtility implements CylinderUtil{
 	
 	private CylinderDetailsTab cdtDAO;
 	
+	@Autowired
 	public CylinderUtility(CylinderRegisterDAO cylinderDAO,CylinderDetailsTab cdtDAO) {
 		this.cylinderDAO = cylinderDAO;
 		this.cdtDAO = cdtDAO;

@@ -3,7 +3,7 @@ package com.pio.PioneerCylinderTracker.controller;
 
 import java.util.TreeMap;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +15,7 @@ public class DealerController {
 
 	private DealerUtil dealerU;
 	
+	@Autowired
 	public DealerController(DealerUtil dealerU) {
 		super();
 		this.dealerU = dealerU;
