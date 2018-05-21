@@ -1,16 +1,10 @@
 package com.pio.PioneerCylinderTracker.service;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pio.PioneerCylinderTracker.dao.CylinderDetailsTab;
-import com.pio.PioneerCylinderTracker.dao.CylinderRegisterDAO;
-import com.pio.PioneerCylinderTracker.model.CylinderBean;
 import com.pio.PioneerCylinderTracker.model.CylinderTxnBean;
 
 /**
@@ -22,24 +16,11 @@ import com.pio.PioneerCylinderTracker.model.CylinderTxnBean;
  */
 
 @Service
-public class CylinderUtility implements CylinderUtil{
-
-	private CylinderRegisterDAO cylinderDAO;
-	
-	private CylinderDetailsTab cdtDAO;
+public class CylinderUtility implements CylinderUtil{	
 	
 	@Autowired
-	public CylinderUtility(CylinderRegisterDAO cylinderDAO,CylinderDetailsTab cdtDAO) {
-		this.cylinderDAO = cylinderDAO;
-		this.cdtDAO = cdtDAO;
-	}
-	
-	@Override
-	public String register(CylinderBean cylinder) {
-		Timestamp time = Timestamp.valueOf(LocalDateTime.now());
-		cylinder.setLastModifiedDate(time);		
-		cylinder.setUsageStatus("0");
-		return cylinderDAO.cylinderRegister(cylinder);
+	public CylinderUtility() {
+		
 	}
 
 	@Override
@@ -52,12 +33,6 @@ public class CylinderUtility implements CylinderUtil{
 	public Double getCylinderCapacity(Long cylinderId) {
 		//This getCylinderCapacity method
 		return null;
-	}
-
-	@Override
-	public Optional<CylinderBean> checkCylinder(Long cylinderId) {
-		return cylinderDAO.checkCylinder(cylinderId);
-		
 	}
 
 	@Override

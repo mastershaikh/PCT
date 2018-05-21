@@ -1,8 +1,11 @@
 package com.pio.PioneerCylinderTracker.controller;
 
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,16 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pio.PioneerCylinderTracker.model.CylinderBean;
-import com.pio.PioneerCylinderTracker.service.CylinderUtil;
+import com.pio.PioneerCylinderTracker.repository.CylinderRegisterRepository;
 
 @RestController
 public class CylinderRegisterController {
 
-	private CylinderUtil cylUtil;
-		
-	public CylinderRegisterController(CylinderUtil cylinderUtil) {
+	private CylinderRegisterRepository cylinderRegisterRepo;
+	
+	@Autowired
+	public CylinderRegisterController(CylinderRegisterRepository cylinderRegisterRepo) {
 		super();
-		this.cylUtil = cylinderUtil;
+		this.cylinderRegisterRepo = cylinderRegisterRepo;
 	}
 
 	@GetMapping(value = "/CylinderRegister",produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -36,8 +40,7 @@ public class CylinderRegisterController {
 			ModelAndView result = new ModelAndView("CylinderRegister", "fail",
 					"Registration Failed");
 				
-			Optional<CylinderBean> cb = cylUtil.checkCylinder(cylinder.getCylinderId());
-			
+			Optional<CylinderBean> cb = cylinderRegisterRepo.findById(cylinder.getCylinderId());
 			if(cb.isPresent()) {
 				result = new ModelAndView("CylinderRegister", "fail",
 						"Cylinder Already registered with details:"
@@ -47,47 +50,13 @@ public class CylinderRegisterController {
 					
 			}else {				
 				cylinder.setBillGenerated("N");
-				String status = cylUtil.register(cylinder);
-				if(status.equals("SUCCESS")){
+				cylinder.setLastModifiedDate(Timestamp.valueOf(LocalDateTime.now()));		
+				cylinder.setUsageStatus("0");
+				cylinderRegisterRepo.save(cylinder);
 					result = new ModelAndView("CylinderRegister", "success",
 					"Cylinder Registration Successful! CylinderID is:"
 							+ cylinder.getCylinderId());
-				}
 			}
 			return result;
 		}
-	/*@GetMapping(value = "/CylinderDamage",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public String viewDamage (final Model model) {
-		model.addAttribute("cylinder", new CylinderBean());
-		return "CylinderDamage";
-	}
-	
-	@PostMapping(value = "/CylinderDamage",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ModelAndView processDamage (
-	@ModelAttribute("cylinder") final CylinderBean cylinder) {
-			ModelAndView result = new ModelAndView("CylinderDamage", "fail",
-					"Registration Failed");
-			String exist = cylUtil.checkCylinder(cylinder.getCylinderId());
-			if(!exist.equals("SUCCESS")) {
-			String[] c = exist.split(";");
-			Double capacity = Double.valueOf(c[1]);
-			cylinder.setCapacity(capacity);
-			String cylinderType = c[2];
-			cylinder.setCylinderType(cylinderType);
-			String remark = c[3]+" "+cylinder.getRemark();
-			cylinder.setDamage("Y");
-			cylinder.setBillGenerated("N");
-			cylinder.setRemark(remark);
-					String status = cylUtil.register(cylinder);
-					if(status.equals("SUCCESS")){
-				result = new ModelAndView("CylinderDamage", "success",
-						"Cylinder Damage Entry Done! Remark is:"
-								+ cylinder.getRemark());
-				}
-			}else {
-				result = new ModelAndView("CylinderDamage", "fail",
-						"Invalid Cylinder! Check again");
-			}
-			return result;
-		}*/
 }
