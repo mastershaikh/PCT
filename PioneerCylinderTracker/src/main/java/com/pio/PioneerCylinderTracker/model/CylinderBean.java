@@ -1,5 +1,6 @@
 package com.pio.PioneerCylinderTracker.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -23,8 +24,13 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @Table(name = "Cylinder")
-public class CylinderBean {
+public class CylinderBean implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -76596069178402454L;
+
 	@Id
 	@Column(length = 6)
 	@NonNull

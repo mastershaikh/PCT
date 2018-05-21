@@ -1,5 +1,7 @@
 package com.pio.PioneerCylinderTracker.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -21,26 +23,31 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @Table(name = "rate")
-public class RateBean {
+public class RateBean implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 824622734856036476L;
 
 	@Id
 	private String dealerId;
 	
 	@NonNull
-	private double rateo2;
+	private Double rateo2;
 	
 	@NonNull
-	private double raten2;
+	private Double raten2;
 	
 	@NonNull
-	private double rateair;
+	private Double rateair;
 	
 	@NonNull
-	private double drateo2;
+	private Double drateo2;
 	
 	@NonNull
-	private double draten2;
+	private Double draten2;
 	
 	@NonNull
-	private double drateair;
+	private Double drateair;
 }

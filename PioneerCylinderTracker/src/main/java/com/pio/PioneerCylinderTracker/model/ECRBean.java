@@ -1,5 +1,6 @@
 package com.pio.PioneerCylinderTracker.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -22,7 +23,12 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @Table(name = "ECR")
-public class ECRBean {
+public class ECRBean implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3602076609225742978L;
 
 	@Id
 	private Long ecrNo;

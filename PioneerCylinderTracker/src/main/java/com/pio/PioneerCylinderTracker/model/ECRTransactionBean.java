@@ -1,5 +1,7 @@
 package com.pio.PioneerCylinderTracker.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,7 +22,12 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @Table(name ="ECRTransaction")
-public class ECRTransactionBean {
+public class ECRTransactionBean implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7280775114445131521L;
 
 	@Id
 	private Long txId;

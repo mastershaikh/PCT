@@ -1,5 +1,6 @@
 package com.pio.PioneerCylinderTracker.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -23,7 +24,12 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @Table(name = "Invoice")
-public class InvoiceBean {
+public class InvoiceBean implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5027649115531062055L;
 
 	@Id
 	private Long billNo;
