@@ -44,7 +44,7 @@ public class DealerCylinderTxnBean implements Serializable{
 	private Double billValue;
 	
 	@NonNull
-	private Double capacity;
+	private Float capacity;
 	
 	@NonNull
 	private Integer cylinderCount;
@@ -59,6 +59,6 @@ public class DealerCylinderTxnBean implements Serializable{
 	private Timestamp dOTx;
 	
 	@NonNull
-	private Double quantity;	
+	private Float quantity;	
 	
 }

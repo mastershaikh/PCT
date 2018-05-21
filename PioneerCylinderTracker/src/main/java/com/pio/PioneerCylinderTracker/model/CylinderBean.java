@@ -41,7 +41,7 @@ public class CylinderBean implements Serializable{
 	private String billGenerated;
 	
 	@Column(length = 1)
-	private Double capacity;
+	private Float capacity;
 	
 	@NonNull
 	private String cylinderType;

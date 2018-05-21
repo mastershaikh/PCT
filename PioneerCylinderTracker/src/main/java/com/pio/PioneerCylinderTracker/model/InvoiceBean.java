@@ -48,7 +48,7 @@ public class InvoiceBean implements Serializable{
 	private Integer totalCylinders;
 	
 	@NonNull
-	private Double quantity;
+	private Float quantity;
 	
 	@NonNull
 	private Double saleValue;
