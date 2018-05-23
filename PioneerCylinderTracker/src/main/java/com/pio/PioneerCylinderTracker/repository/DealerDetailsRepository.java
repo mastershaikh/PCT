@@ -8,14 +8,14 @@
  */
 package com.pio.PioneerCylinderTracker.repository;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.pio.PioneerCylinderTracker.model.CylinderBean;
+import com.pio.PioneerCylinderTracker.model.DealerDetailsBean;
 
 /**
- * CylinderRepository.java is used to 
+ * DealerDetailsRepository.java is used to 
  * 
  * @author : Shaikh Nizamuddin
  *
@@ -24,9 +24,9 @@ import com.pio.PioneerCylinderTracker.model.CylinderBean;
  * Since   : May 23, 2018
  *
  */
-public interface CylinderRepository extends CrudRepository<CylinderBean, Long> {
+public interface DealerDetailsRepository extends CrudRepository<DealerDetailsBean, String> {
 
-	Optional<CylinderBean> findByCylinderId(Long cylinderId);
-		
-	Long countByUsageStatusAndCylinderType(String dealerId,Integer cylinderType);
+	DealerDetailsBean findByDealerId(String dealerId);
+	
+	List<DealerDetailsBean> findAll();
 }

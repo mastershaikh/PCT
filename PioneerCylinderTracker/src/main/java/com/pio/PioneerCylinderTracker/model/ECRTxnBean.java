@@ -34,7 +34,7 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @Table(name ="ECRTransaction")
-public class ECRTransactionBean implements Serializable{
+public class ECRTxnBean implements Serializable{
 
 	/**
 	 * 
@@ -46,9 +46,6 @@ public class ECRTransactionBean implements Serializable{
 	
 	@NonNull
 	private Long cylinderId;
-	
-	@NonNull
-	private String lorryNo;
 	
 	@NonNull
 	private String dealerId;

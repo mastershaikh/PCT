@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pio.PioneerCylinderTracker.model.CylinderBean;
-import com.pio.PioneerCylinderTracker.repository.CylinderRegisterRepository;
+import com.pio.PioneerCylinderTracker.repository.CylinderRepository;
 
 /**
  * CylinderRegisterController.java is used to 
@@ -38,12 +38,12 @@ import com.pio.PioneerCylinderTracker.repository.CylinderRegisterRepository;
 @RestController
 public class CylinderRegisterController {
 
-	private CylinderRegisterRepository cylinderRegisterRepo;
+	private CylinderRepository cylinderRepo;
 	
 	@Autowired
-	public CylinderRegisterController(CylinderRegisterRepository cylinderRegisterRepo) {
+	public CylinderRegisterController(CylinderRepository cylinderRepo) {
 		super();
-		this.cylinderRegisterRepo = cylinderRegisterRepo;
+		this.cylinderRepo = cylinderRepo;
 	}
 
 	@GetMapping(value = "/CylinderRegister",produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -57,7 +57,7 @@ public class CylinderRegisterController {
 			ModelAndView result = new ModelAndView("CylinderRegister", "fail",
 					"Registration Failed");
 				
-			Optional<CylinderBean> cb = cylinderRegisterRepo.findByCylinderId(cylinder.getCylinderId());
+			Optional<CylinderBean> cb = cylinderRepo.findByCylinderId(cylinder.getCylinderId());
 			if(cb.isPresent()) {
 				result = new ModelAndView("CylinderRegister", "fail",
 						"Cylinder Already registered with details:"
@@ -69,7 +69,7 @@ public class CylinderRegisterController {
 				cylinder.setBillGenerated("N");
 				cylinder.setLastModifiedDate(Timestamp.valueOf(LocalDateTime.now()));		
 				cylinder.setUsageStatus("0");
-				cylinderRegisterRepo.save(cylinder);
+				cylinderRepo.save(cylinder);
 					result = new ModelAndView("CylinderRegister", "success",
 					"Cylinder Registration Successful! CylinderID is:"
 							+ cylinder.getCylinderId());

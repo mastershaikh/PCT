@@ -50,9 +50,6 @@ public class CylinderTxnBean implements Serializable{
 	
 	@NonNull
 	private Long cylinderId;
-	
-	@NonNull
-	private String cylinderType;
 
 	@NonNull
 	@Column(length = 1)

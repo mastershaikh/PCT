@@ -2,20 +2,18 @@
  * This project is Licensed under Apache 2.0 
  * and it is intended for reference only.
  * Do not copy or sell without owners' permission.
- * 
+ *
  * Copyright © 2018 by Shaikh Nizamuddin. All Rights Reserved.
  * 
  */
 package com.pio.PioneerCylinderTracker.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.pio.PioneerCylinderTracker.model.CylinderTxnBean;
+import com.pio.PioneerCylinderTracker.model.InvoiceBean;
 
 /**
- * CylinderTxnRepository.java is used to 
+ * InvoiceRepository.java is used to 
  * 
  * @author : Shaikh Nizamuddin
  *
@@ -24,7 +22,6 @@ import com.pio.PioneerCylinderTracker.model.CylinderTxnBean;
  * Since   : May 23, 2018
  *
  */
-public interface CylinderTxnRepository extends JpaRepository<CylinderTxnBean, Long> {
+public interface InvoiceRepository extends JpaRepository<InvoiceBean, Long> {
 
-	List<CylinderTxnBean> findByCylinderId(Long cylinderId);
 }

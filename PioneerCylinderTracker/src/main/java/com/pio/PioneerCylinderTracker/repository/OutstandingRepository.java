@@ -2,21 +2,18 @@
  * This project is Licensed under Apache 2.0 
  * and it is intended for reference only.
  * Do not copy or sell without owners' permission.
- * 
+ *
  * Copyright © 2018 by Shaikh Nizamuddin. All Rights Reserved.
  * 
  */
-
 package com.pio.PioneerCylinderTracker.repository;
 
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import org.springframework.data.repository.CrudRepository;
-
-import com.pio.PioneerCylinderTracker.model.CylinderBean;
+import com.pio.PioneerCylinderTracker.model.OutstandingBean;
 
 /**
- * CylinderRegisterRepository.java is used to 
+ * OutstandingRepository.java is used to 
  * 
  * @author : Shaikh Nizamuddin
  *
@@ -25,7 +22,6 @@ import com.pio.PioneerCylinderTracker.model.CylinderBean;
  * Since   : May 23, 2018
  *
  */
-public interface CylinderRegisterRepository extends CrudRepository<CylinderBean, Long> {
+public interface OutstandingRepository extends JpaRepository<OutstandingBean, Long> {
 
-	Optional<CylinderBean> findByCylinderId(Long cylinderId);
 }

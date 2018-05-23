@@ -8,14 +8,22 @@
  */
 package com.pio.PioneerCylinderTracker.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pio.PioneerCylinderTracker.model.CylinderBean;
+import com.pio.PioneerCylinderTracker.model.CylinderTxnBean;
+import com.pio.PioneerCylinderTracker.model.ElementTypeBean;
 import com.pio.PioneerCylinderTracker.repository.CylinderRepository;
+import com.pio.PioneerCylinderTracker.repository.CylinderTxnRepository;
+import com.pio.PioneerCylinderTracker.repository.ElementRepository;
+import com.pio.PioneerCylinderTracker.vo.CylinderDetailsVO;
 
 /**
  * CylinderController.java is used to 
@@ -31,22 +39,28 @@ import com.pio.PioneerCylinderTracker.repository.CylinderRepository;
 public class CylinderController {
 	
 	private CylinderRepository cylinderRepo;
+	private ElementRepository elementRepo;
+	private CylinderTxnRepository cylinderTxnRepo;
 	
 	/**
 	 * @param cylinderRepo
 	 */
 	@Autowired
-	public CylinderController(CylinderRepository cylinderRepo) {
+	public CylinderController(CylinderRepository cylinderRepo,ElementRepository elementRepo,
+			CylinderTxnRepository cylinderTxnRepo) {
 		super();
 		this.cylinderRepo = cylinderRepo;
+		this.elementRepo = elementRepo;
+		this.cylinderTxnRepo = cylinderTxnRepo;
 	}
 	
-	
-
-	@GetMapping(value="/findCylinder/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public CylinderBean findCylinder (@PathVariable("id") Long id) {		
-		return cylinderRepo.findByCylinderId(id);
+	@PostMapping(value="/trackCylinder",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public CylinderDetailsVO trackCylinder (@RequestParam(value = "cylinderId") Long cylinderId) {
+		
+		Optional<CylinderBean> cb = cylinderRepo.findByCylinderId(cylinderId);
+		List<CylinderTxnBean> ctb = cylinderTxnRepo.findByCylinderId(cylinderId);
+		ElementTypeBean etb = elementRepo.findByElementId(cb.get().getCylinderType());
+		return new CylinderDetailsVO(cb, ctb, etb);
 	}
-
 	
 }

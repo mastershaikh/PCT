@@ -33,7 +33,7 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @Table(name = "ElementType")
-public class ElementType implements Serializable {
+public class ElementTypeBean implements Serializable {
 
 	/**
 	 * 

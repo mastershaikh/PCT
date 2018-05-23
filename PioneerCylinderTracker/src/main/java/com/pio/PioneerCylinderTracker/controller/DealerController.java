@@ -14,11 +14,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pio.PioneerCylinderTracker.model.DealerDetailsBean;
-import com.pio.PioneerCylinderTracker.repository.DealerListRepository;
-import com.pio.PioneerCylinderTracker.service.DealerUtil;
+import com.pio.PioneerCylinderTracker.model.RateBean;
+import com.pio.PioneerCylinderTracker.repository.CylinderRepository;
+import com.pio.PioneerCylinderTracker.repository.DealerDetailsRepository;
+import com.pio.PioneerCylinderTracker.repository.RateRepository;
+import com.pio.PioneerCylinderTracker.vo.DealerDetailsVO;
 
 /**
  * DealerController.java is used to 
@@ -33,24 +38,33 @@ import com.pio.PioneerCylinderTracker.service.DealerUtil;
 @RestController
 public class DealerController {
 
-	private DealerUtil dealerU;
-	private DealerListRepository dealerListRepo;
+	private DealerDetailsRepository dealerDetailsRepo;
+	private RateRepository rateRepo;
+	private CylinderRepository cylinderRepo;
+	
 	@Autowired
-	public DealerController(DealerUtil dealerU,DealerListRepository dealerListRepo) {
+	public DealerController(DealerDetailsRepository dealerDetailsRepo,RateRepository rateRepo,
+			CylinderRepository cylinderRepo) {
 		super();
-		this.dealerU = dealerU;
-		this.dealerListRepo = dealerListRepo;
+		this.dealerDetailsRepo = dealerDetailsRepo;
+		this.rateRepo = rateRepo;
+		this.cylinderRepo = cylinderRepo;
 	}
 	
 	@GetMapping(value = "/dealerLists",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public List<DealerDetailsBean> listOfDealers () {	
-		List<DealerDetailsBean> ddb = dealerListRepo.findAll();
+		List<DealerDetailsBean> ddb = dealerDetailsRepo.findAll();
 		return ddb;
 	}
 
-	/*@GetMapping(value = "/dealerLists",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public TreeMap<String,String> listOfDealers () {	
+	@PostMapping(value = "/dealerDetails",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public DealerDetailsVO dealerDetails (@RequestParam(value = "dealerId") String dealerId){
 		
-		return dealerU.allDealers();
-	}*/
+			DealerDetailsBean ddb = dealerDetailsRepo.findByDealerId(dealerId);
+			RateBean rb = rateRepo.findByDealerId(dealerId);
+			Long n2 = cylinderRepo.countByUsageStatusAndCylinderType(dealerId,7);
+			Long o2 = cylinderRepo.countByUsageStatusAndCylinderType(dealerId,8);	
+			
+			return new DealerDetailsVO(ddb,rb,n2,o2);
+		}
 }
