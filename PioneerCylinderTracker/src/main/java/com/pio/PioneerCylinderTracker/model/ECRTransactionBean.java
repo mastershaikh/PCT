@@ -1,3 +1,11 @@
+/*
+ * This project is Licensed under Apache 2.0 
+ * and it is intended for reference only.
+ * Do not copy or sell without owners' permission.
+ * 
+ * Copyright © 2018 by Shaikh Nizamuddin. All Rights Reserved.
+ * 
+ */
 package com.pio.PioneerCylinderTracker.model;
 
 import java.io.Serializable;
@@ -14,7 +22,11 @@ import lombok.NonNull;
 /**
  * This ECRTransactionBean class is used to track returned Cylinders
  * 
- * @author Shaikh Nizamuddin
+ * @author : Shaikh Nizamuddin
+ *
+ * version : 1.0
+ *
+ * Since   : May 23, 2018
  *
  */
 

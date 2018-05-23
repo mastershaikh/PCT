@@ -1,8 +1,15 @@
+/*
+ * This project is Licensed under Apache 2.0 
+ * and it is intended for reference only.
+ * Do not copy or sell without owners' permission.
+ * 
+ * Copyright © 2018 by Shaikh Nizamuddin. All Rights Reserved.
+ * 
+ */
 package com.pio.PioneerCylinderTracker.controller;
 
 
 import java.util.List;
-import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,6 +20,16 @@ import com.pio.PioneerCylinderTracker.model.DealerDetailsBean;
 import com.pio.PioneerCylinderTracker.repository.DealerListRepository;
 import com.pio.PioneerCylinderTracker.service.DealerUtil;
 
+/**
+ * DealerController.java is used to 
+ * 
+ * @author : Shaikh Nizamuddin
+ *
+ * version : 1.0
+ *
+ * Since   : May 23, 2018
+ *
+ */
 @RestController
 public class DealerController {
 

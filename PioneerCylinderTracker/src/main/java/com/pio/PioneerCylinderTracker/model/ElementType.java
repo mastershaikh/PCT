@@ -9,9 +9,7 @@
 package com.pio.PioneerCylinderTracker.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -20,10 +18,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-
 /**
- * This OutstandingBean class is used to generate monthly
- * dealer invoice outstanding
+ * This class is a model of Elements
  * 
  * @author : Shaikh Nizamuddin
  *
@@ -36,35 +32,18 @@ import lombok.NonNull;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "OutStanding")
-public class OutstandingBean implements Serializable{
-	
+@Table(name = "ElementType")
+public class ElementType implements Serializable {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1254407780852665287L;
-
+	private static final long serialVersionUID = -4500817032464449328L;
+	
 	@Id
-	@Column(length = 6)
-	private Long outId;
+	private Integer elementId;
 	
 	@NonNull
-	private Timestamp outDate;
-	
-	@Column(length = 6)
-	@NonNull
-	private String dealerId;
-	
-	@NonNull
-	private Double totalAmount;
-	
-	@NonNull
-	private Integer cylinderTaken;
-	
-	@NonNull
-	private Integer cylinderReturn;
-	
-	@NonNull
-	private String billNos;
+	private String elementName;
 	
 }

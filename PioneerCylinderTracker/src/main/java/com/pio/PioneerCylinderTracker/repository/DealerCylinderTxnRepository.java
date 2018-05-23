@@ -2,21 +2,18 @@
  * This project is Licensed under Apache 2.0 
  * and it is intended for reference only.
  * Do not copy or sell without owners' permission.
- * 
+ *
  * Copyright © 2018 by Shaikh Nizamuddin. All Rights Reserved.
  * 
  */
-
 package com.pio.PioneerCylinderTracker.repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import org.springframework.data.repository.CrudRepository;
-
-import com.pio.PioneerCylinderTracker.model.DealerDetailsBean;
+import com.pio.PioneerCylinderTracker.model.DealerCylinderTxnBean;
 
 /**
- * DealerListRepository.java is used to 
+ * DealerCylinderTxnRepository.java is used to 
  * 
  * @author : Shaikh Nizamuddin
  *
@@ -25,7 +22,6 @@ import com.pio.PioneerCylinderTracker.model.DealerDetailsBean;
  * Since   : May 23, 2018
  *
  */
-public interface DealerListRepository extends CrudRepository<DealerDetailsBean, String>{
+public interface DealerCylinderTxnRepository extends JpaRepository<DealerCylinderTxnBean, Long> {
 
-	List<DealerDetailsBean> findAll();
 }

@@ -1,3 +1,11 @@
+/*
+ * This project is Licensed under Apache 2.0 
+ * and it is intended for reference only.
+ * Do not copy or sell without owners' permission.
+ * 
+ * Copyright © 2018 by Shaikh Nizamuddin. All Rights Reserved.
+ * 
+ */
 package com.pio.PioneerCylinderTracker.model;
 
 import java.io.Serializable;
@@ -16,7 +24,11 @@ import lombok.NonNull;
 /**
  * This InvoiceBean class is used to generate Invoice
  * 
- * @author Shaikh Nizamuddin
+ * @author : Shaikh Nizamuddin
+ *
+ * version : 1.0
+ *
+ * Since   : May 23, 2018
  *
  */
 
@@ -40,9 +52,8 @@ public class InvoiceBean implements Serializable{
 	@Column(length=15)
 	private String vehicleNo;
 	
-	@Column(length= 50)
 	@NonNull
-	private String cylinderType;
+	private Integer cylinderType;
 	
 	@NonNull
 	private Integer totalCylinders;

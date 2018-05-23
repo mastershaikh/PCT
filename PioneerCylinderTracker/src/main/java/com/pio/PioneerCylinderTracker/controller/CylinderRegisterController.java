@@ -1,3 +1,11 @@
+/*
+ * This project is Licensed under Apache 2.0 
+ * and it is intended for reference only.
+ * Do not copy or sell without owners' permission.
+ * 
+ * Copyright © 2018 by Shaikh Nizamuddin. All Rights Reserved.
+ * 
+ */
 package com.pio.PioneerCylinderTracker.controller;
 
 
@@ -17,6 +25,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pio.PioneerCylinderTracker.model.CylinderBean;
 import com.pio.PioneerCylinderTracker.repository.CylinderRegisterRepository;
 
+/**
+ * CylinderRegisterController.java is used to 
+ * 
+ * @author : Shaikh Nizamuddin
+ *
+ * version : 1.0
+ *
+ * Since   : May 23, 2018
+ *
+ */
 @RestController
 public class CylinderRegisterController {
 
@@ -33,14 +51,13 @@ public class CylinderRegisterController {
 		model.addAttribute("cylinder", new CylinderBean());
 		return "CylinderRegister";
 	}
-	
 	@PostMapping(value = "/CylinderRegister",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ModelAndView processRegister (
 	@ModelAttribute("cylinder") final CylinderBean cylinder) {
 			ModelAndView result = new ModelAndView("CylinderRegister", "fail",
 					"Registration Failed");
 				
-			Optional<CylinderBean> cb = cylinderRegisterRepo.findById(cylinder.getCylinderId());
+			Optional<CylinderBean> cb = cylinderRegisterRepo.findByCylinderId(cylinder.getCylinderId());
 			if(cb.isPresent()) {
 				result = new ModelAndView("CylinderRegister", "fail",
 						"Cylinder Already registered with details:"
