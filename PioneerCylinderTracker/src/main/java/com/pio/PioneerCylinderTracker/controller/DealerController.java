@@ -19,10 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pio.PioneerCylinderTracker.model.DealerDetailsBean;
-import com.pio.PioneerCylinderTracker.model.RateBean;
-import com.pio.PioneerCylinderTracker.repository.CylinderRepository;
 import com.pio.PioneerCylinderTracker.repository.DealerDetailsRepository;
-import com.pio.PioneerCylinderTracker.repository.RateRepository;
+import com.pio.PioneerCylinderTracker.service.DealerService;
 import com.pio.PioneerCylinderTracker.vo.DealerDetailsVO;
 
 /**
@@ -39,16 +37,12 @@ import com.pio.PioneerCylinderTracker.vo.DealerDetailsVO;
 public class DealerController {
 
 	private DealerDetailsRepository dealerDetailsRepo;
-	private RateRepository rateRepo;
-	private CylinderRepository cylinderRepo;
-	
+	private DealerService dealerS;
 	@Autowired
-	public DealerController(DealerDetailsRepository dealerDetailsRepo,RateRepository rateRepo,
-			CylinderRepository cylinderRepo) {
+	public DealerController(DealerDetailsRepository dealerDetailsRepo,DealerService dealerS) {
 		super();
 		this.dealerDetailsRepo = dealerDetailsRepo;
-		this.rateRepo = rateRepo;
-		this.cylinderRepo = cylinderRepo;
+		this.dealerS = dealerS;
 	}
 	
 	@GetMapping(value = "/dealerLists",produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -60,11 +54,7 @@ public class DealerController {
 	@PostMapping(value = "/dealerDetails",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public DealerDetailsVO dealerDetails (@RequestParam(value = "dealerId") String dealerId){
 		
-			DealerDetailsBean ddb = dealerDetailsRepo.findByDealerId(dealerId);
-			RateBean rb = rateRepo.findByDealerId(dealerId);
-			Long n2 = cylinderRepo.countByUsageStatusAndCylinderType(dealerId,7);
-			Long o2 = cylinderRepo.countByUsageStatusAndCylinderType(dealerId,8);	
+		return dealerS.dealerDetails(dealerId);
 			
-			return new DealerDetailsVO(ddb,rb,n2,o2);
 		}
 }
