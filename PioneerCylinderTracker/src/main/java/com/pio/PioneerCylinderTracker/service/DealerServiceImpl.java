@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.pio.PioneerCylinderTracker.dao.DealerDAO;
 
 @Service
-public class DealerUtility implements DealerUtil {
+public class DealerServiceImpl implements DealerService {
 	
 	private DealerDAO dealerDAO;
 	
@@ -19,7 +19,7 @@ public class DealerUtility implements DealerUtil {
 	 * @param dealerL
 	 */
 	@Autowired
-	public DealerUtility(DealerDAO dealerDAO) {
+	public DealerServiceImpl(DealerDAO dealerDAO) {
 		super();
 		this.dealerDAO = dealerDAO;
 	}
