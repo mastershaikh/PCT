@@ -12,7 +12,9 @@ package com.pio.PioneerCylinderTracker.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,6 +40,7 @@ public class DealerController {
 
 	private DealerDetailsRepository dealerDetailsRepo;
 	private DealerService dealerS;
+	
 	@Autowired
 	public DealerController(DealerDetailsRepository dealerDetailsRepo,DealerService dealerS) {
 		super();
@@ -52,9 +55,11 @@ public class DealerController {
 	}
 
 	@PostMapping(value = "/dealerDetails",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public DealerDetailsVO dealerDetails (@RequestParam(value = "dealerId") String dealerId){
+	public ResponseEntity<DealerDetailsVO> dealerDetails (@RequestParam(value = "dealerId") String dealerId){
 		
-		return dealerS.dealerDetails(dealerId);
+		DealerDetailsVO ddvo = dealerS.dealerDetails(dealerId);
+		
+		return new ResponseEntity<>(ddvo,HttpStatus.OK);
 			
 		}
 }
