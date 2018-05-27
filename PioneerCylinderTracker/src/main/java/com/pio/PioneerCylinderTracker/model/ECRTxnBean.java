@@ -33,7 +33,7 @@ import lombok.NonNull;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name ="ECRTransaction")
+@Table(name ="ECRTxn")
 public class ECRTxnBean implements Serializable{
 
 	/**
