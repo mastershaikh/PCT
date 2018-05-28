@@ -58,7 +58,6 @@ public class CylinderTxnBean implements Serializable{
 	@NonNull
 	private Timestamp dOTx;
 	
-	@Column(name = "DOR")
 	private Timestamp DOR;
 	
 	@Column(length = 1)
