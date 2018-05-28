@@ -69,4 +69,6 @@ public class CylinderBean implements Serializable{
 	@Column(length = 6)
 	@NonNull
 	private String usageStatus;
+	
+	private Long billNo;
 }
