@@ -50,14 +50,13 @@ public class CylinderBean implements Serializable{
 	@NonNull
 	private String billGenerated;
 	
-	@Column(length = 1)
 	private Float capacity;
 	
 	@NonNull
 	private Integer cylinderType;
 	
-	@Column(length = 1)
 	@NonNull
+	@Column(length = 1)
 	private String damage;
 	
 	@NonNull
