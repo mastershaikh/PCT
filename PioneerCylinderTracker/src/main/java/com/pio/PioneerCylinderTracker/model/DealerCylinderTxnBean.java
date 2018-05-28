@@ -62,7 +62,7 @@ public class DealerCylinderTxnBean implements Serializable{
 	private Integer cylinderCount;
 	
 	@NonNull
-	private String cylinderType;
+	private Integer cylinderType;
 	
 	@NonNull
 	private String dealerId;
