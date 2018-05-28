@@ -60,19 +60,7 @@ public class InvoiceBean implements Serializable{
 	
 	@NonNull
 	private Float quantity;
-	
-	@NonNull
-	private Double saleValue;
-	
-	@NonNull
-	private Double CGST;
-	
-	@NonNull
-	private Double SGST;
-	
-	@NonNull
-	private Double billValue;
-	
+		
 	@NonNull
 	private Double rate;
 	
